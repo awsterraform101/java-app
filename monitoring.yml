@@ -1,0 +1,19 @@
+Grafana Setup:
+Installation and upgrade:
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm upgrade monitor -f grafana.values.yaml prometheus-community/kube-prometheus-stack --version 61.6.0 -n observe --install
+
+
+-------------------------------------------------------
+loki:
+helm repo add grafana https://grafana.github.io/helm-charts 
+helm upgrade loki-distributed -f loki-distributed.azure.values.yaml grafana/loki-distributed --version 0.80.0 --install -n observe
+------------------------------------------------------
+tempoo:-
+helm repo add grafana https://grafana.github.io/helm-charts
+
+helm upgrade tempo-hetzner -f tempo.hetzner-devops-cluster.values.yaml . --install -n observe
+------------------------------------------------------
+argocd:-
+helm repo add argo https://argoproj.github.io/argo-helm
+helm upgrade argocd -f argocd.values.yaml argo/argo-cd --version 7.7.10 --install -n argocd
